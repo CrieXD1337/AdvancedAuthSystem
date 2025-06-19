@@ -6,9 +6,7 @@ import cn.nukkit.utils.TextFormat;
 import ru.rexlite.auth.commands.ChangePassword;
 import ru.rexlite.auth.listeners.FormListener;
 import ru.rexlite.auth.managers.*;
-import ru.rexlite.auth.providers.DataProvider;
-import ru.rexlite.auth.providers.MySqlDataProvider;
-import ru.rexlite.auth.providers.YamlDataProvider;
+import ru.rexlite.auth.providers.*;
 
 public class MainAuth extends PluginBase implements Listener {
 
