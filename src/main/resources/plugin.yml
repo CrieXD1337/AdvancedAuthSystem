@@ -1,8 +1,10 @@
 name: Auth
-version: 1.0.0
+version: 1.0-b
 api: ["1.1.0"]
 main: ru.rexlite.auth.MainAuth
 author: Criex
 permissions:
   auth.commands.changepassword:
     default: true
+  auth.admin:
+    default: false
