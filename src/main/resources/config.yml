@@ -8,7 +8,7 @@ provider: YAML
 # Do not touch this option ;)
 debug: false
 
-# mysql settings (form mysql prvoider)
+# mysql settings (for mysql prvoider)
 mysql:
   host: "localhost"
   port: 3306
