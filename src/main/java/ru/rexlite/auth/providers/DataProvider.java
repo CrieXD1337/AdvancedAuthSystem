@@ -7,5 +7,7 @@ public interface DataProvider {
     void updatePassword(String nick, String newHash);
     String getClientId(String nick);
     void updateClientId(String nick, String clientId);
+    int getAccountsByIp(String ip);
+    String getPasswordHash(String nick);
     void close();
 }
