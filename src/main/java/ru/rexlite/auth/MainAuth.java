@@ -23,6 +23,8 @@ public class MainAuth extends PluginBase implements Listener {
         String provider = configManager.getConfig().getString("provider", "YAML");
         if (provider.equalsIgnoreCase("MySQL")) {
             this.dataProvider = new MySqlDataProvider(this, configManager);
+        } else if (provider.equalsIgnoreCase("SQLite")) {
+            this.dataProvider = new SQLiteDataProvider(this, configManager);
         } else {
             this.dataProvider = new YamlDataProvider(this, configManager);
         }
@@ -43,7 +45,6 @@ public class MainAuth extends PluginBase implements Listener {
 
     @Override
     public void onDisable() {
-
         this.getLogger().info(TextFormat.YELLOW + "ASU - Auth plugin disabled");
 
         if (dataProvider != null) {
