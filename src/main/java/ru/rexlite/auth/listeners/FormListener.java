@@ -78,9 +78,9 @@ public class FormListener implements Listener {
     private void handleForgotPasswordForm(Player player, FormWindow window) {
         FormResponseSimple response = (FormResponseSimple) window.getResponse();
         String buttonText = response.getClickedButton().getText();
-        if (buttonText.equals(configManager.getForms().getString("forgot-password.button-try-again"))) {
+        if (buttonText.equals(configManager.getForms().getString("forgot-password.button-try-again", "Try again"))) {
             plugin.getFormManager().showLoginForm(player);
-        } else if (buttonText.equals(configManager.getForms().getString("forgot-password.button-leave"))) {
+        } else if (buttonText.equals(configManager.getForms().getString("forgot-password.button-leave", "Leave from server"))) {
             player.kick(configManager.getMessages().getString("kick-reason"), false);
         }
     }
@@ -116,6 +116,16 @@ public class FormListener implements Listener {
             }
 
             if (configManager.getAccounts().getInt(player.getClientId().toString()) < configManager.getConfig().getInt("isCountAccounts")) {
+                // Check IP account limit
+                if (configManager.getConfig().getBoolean("enable-max-accounts-per-ip")) {
+                    int maxAccountsPerIp = configManager.getConfig().getInt("max-accounts-per-ip");
+                    int accountsByIp = dataProvider.getAccountsByIp(player.getAddress());
+                    if (accountsByIp >= maxAccountsPerIp) {
+                        player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("too-many-accounts-ip")));
+                        player.kick(TextFormat.colorize(configManager.getMessages().getString("too-many-accounts-ip")), false);
+                        return;
+                    }
+                }
                 configManager.getAccounts().set(player.getClientId().toString(), configManager.getAccounts().getInt(player.getClientId().toString()) + 1);
                 configManager.getAccounts().save();
                 dataProvider.register(nick, AuthManager.sha256(pass), player.getAddress(), player.getClientId().toString(), "");
