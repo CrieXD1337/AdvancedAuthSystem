@@ -48,6 +48,10 @@ list-easy-password: "123456, password, qwerty, 111111, 123123, 000000"
 # maximum account for player
 isCountAccounts: 3
 
+# limit accounts per IP
+enable-max-accounts-per-ip: false
+max-accounts-per-ip: 5
+
 # save players ip to ip.yml
 ip-players-save: true
 
