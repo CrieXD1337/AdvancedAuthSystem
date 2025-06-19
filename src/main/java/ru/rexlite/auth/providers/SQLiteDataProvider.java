@@ -136,6 +136,32 @@ public class SQLiteDataProvider implements DataProvider {
     }
 
     @Override
+    public int getAccountsByIp(String ip) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM users WHERE ip = ?")) {
+            ps.setString(1, ip);
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            plugin.getLogger().error("[SQLiteDataProvider] Error counting accounts for IP " + ip + ": " + e.getMessage(), e);
+            return 0;
+        }
+    }
+
+    @Override
+    public String getPasswordHash(String nick) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT password FROM users WHERE nickname = ?")) {
+            ps.setString(1, nick);
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getString("password") : null;
+        } catch (SQLException e) {
+            plugin.getLogger().error("[SQLiteDataProvider] Error getting password hash for nickname " + nick + ": " + e.getMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
     public void close() {
         if (this.connection != null) {
             try {
