@@ -54,6 +54,22 @@ public class YamlDataProvider implements DataProvider {
     }
 
     @Override
+    public int getAccountsByIp(String ip) {
+        int count = 0;
+        for (String key : this.ip.getKeys(false)) {
+            if (this.ip.getString(key).equals(ip)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public String getPasswordHash(String nick) {
+        return passwords.getString(nick, null);
+    }
+
+    @Override
     public void close() {
         // don't need for yaml :)
     }
