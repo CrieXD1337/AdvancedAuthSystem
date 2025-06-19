@@ -157,6 +157,16 @@ public class AuthManager implements Listener {
                     }
                 }
                 if (configManager.getAccounts().getInt(player.getClientId().toString()) < configManager.getConfig().getInt("isCountAccounts")) {
+                    // Check IP account limit
+                    if (configManager.getConfig().getBoolean("enable-max-accounts-per-ip")) {
+                        int maxAccountsPerIp = configManager.getConfig().getInt("max-accounts-per-ip");
+                        int accountsByIp = dataProvider.getAccountsByIp(player.getAddress());
+                        if (accountsByIp >= maxAccountsPerIp) {
+                            player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("too-many-accounts-ip")));
+                            player.kick(TextFormat.colorize(configManager.getMessages().getString("too-many-accounts-ip")), false);
+                            return;
+                        }
+                    }
                     configManager.getAccounts().set(player.getClientId().toString(), configManager.getAccounts().getInt(player.getClientId().toString()) + 1);
                     configManager.getAccounts().save();
                     dataProvider.register(nick, sha256(pass), player.getAddress(), player.getClientId().toString(), "");
@@ -276,5 +286,14 @@ public class AuthManager implements Listener {
 
     public Map<String, String> getRestoreCodes() {
         return restoreCodes;
+    }
+
+    public void resetPassword(String nick) {
+        String newPass = generateNewPassword();
+        dataProvider.updatePassword(nick, sha256(newPass));
+        Player player = plugin.getServer().getPlayerExact(nick);
+        if (player != null && player.isOnline()) {
+            player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("reset-password-message").replace("{password}", newPass)));
+        }
     }
 }
