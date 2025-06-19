@@ -115,8 +115,6 @@ public class MySqlDataProvider implements DataProvider {
         }
     }
 
-    // emal - soon
-
     @Override
     public String getClientId(String nick) {
         try (Connection conn = this.getConnection();
@@ -140,6 +138,32 @@ public class MySqlDataProvider implements DataProvider {
             plugin.getLogger().info("[MySqlDataProvider] Client_id for " + nick + " successfully updated");
         } catch (SQLException e) {
             plugin.getLogger().error("[MySqlDataProvider] Client_id update error for player " + nick + ": " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public int getAccountsByIp(String ip) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM users WHERE ip = ?")) {
+            ps.setString(1, ip);
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            plugin.getLogger().error("[MySqlDataProvider] Error counting accounts for IP " + ip + ": " + e.getMessage(), e);
+            return 0;
+        }
+    }
+
+    @Override
+    public String getPasswordHash(String nick) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT password FROM users WHERE nickname = ?")) {
+            ps.setString(1, nick);
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getString("password") : null;
+        } catch (SQLException e) {
+            plugin.getLogger().error("[MySqlDataProvider] Error getting password hash for nickname " + nick + ": " + e.getMessage(), e);
+            return null;
         }
     }
 
