@@ -1,0 +1,55 @@
+# AUS - Advanced Auth System
+# Created by Criex
+# Source code: github.com/CrieXD1337/AdvancedAuthSystem
+
+# Available providers: YAML, mysql
+provider: YAML
+
+# Do not touch this option ;)
+debug: false
+
+# mysql settings (form mysql prvoider)
+mysql:
+  host: "localhost"
+  port: 3306
+  database: "auth"
+  user: "nukkit"
+  password: "tikkun"
+
+# commands
+commands:
+  changepassword:
+    name: changepassword # command name
+    aliases: ["changepass", "cp", "cpass"] # command aliases
+    description: Change your password # command description
+    permission: auth.commands.changepassword
+
+# disable creative or fly in auth
+isOffGamemodeOrFly: true
+
+# kick player if password attempts = <count-attemps
+isAttempts: true
+
+# maximum attempts to enter password (see ↑ string)
+count-attempts: 3
+
+# minimum password characters
+min_count_symbols: 3
+
+# maximum password characters
+max_count_symbols: 20
+
+# list of easy passwords (tip for players)
+list-easy-password: "123456, password, qwerty, 111111, 123123, 000000"
+
+# maximum account for player
+isCountAccounts: 3
+
+# save players ip to ip.yml
+ip-players-save: true
+
+# broadcasts message about new players
+isNewPlayerMessage: true
+
+# kick player if he is not authorized X seconds:
+form-timeout-seconds: 120

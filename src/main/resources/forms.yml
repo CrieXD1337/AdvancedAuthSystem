@@ -1,0 +1,19 @@
+register:
+  title: "Register"
+  label: "Enter your password"
+  input: "Your password here"
+login:
+  title: "Login"
+  label: "Your account registered\n\nEnter your password:"
+  input: "Your password here"
+wrong-password:
+  title: "Wrong Password"
+  label: "The password you entered is incorrect!"
+  button-try-again: "Try Again"
+  button-leave: "Leave"
+change-password:
+  title: "Change Password"
+  label: "Enter your passwords"
+  input-old: "Your old password"
+  input-new: "Your new password"
+  input-repeat: "Repeat your new password"
