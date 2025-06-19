@@ -1,20 +1,23 @@
 # AUS - Advanced Auth System
-# Created by Criex
 # Source code: github.com/CrieXD1337/AdvancedAuthSystem
 
-# Available providers: YAML, mysql
+# Available providers: YAML, MySQL, SQLite
 provider: YAML
 
 # Do not touch this option ;)
 debug: false
 
-# mysql settings (for mysql prvoider)
+# MySQL settings (for MySQL provider)
 mysql:
   host: "localhost"
   port: 3306
   database: "auth"
   user: "nukkit"
   password: "tikkun"
+
+# SQLite settings (for SQLite provider)
+sqlite:
+  database: "auth.db"
 
 # commands
 commands:
@@ -27,7 +30,7 @@ commands:
 # disable creative or fly in auth
 isOffGamemodeOrFly: true
 
-# kick player if password attempts = <count-attemps
+# kick player if password attempts = <count-attempts
 isAttempts: true
 
 # maximum attempts to enter password (see ↑ string)
