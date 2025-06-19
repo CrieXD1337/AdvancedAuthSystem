@@ -6,7 +6,7 @@ The plugin is being tested, there may be many errors/bugs. Request: if you notic
 2. Run command `git clone https://github.com/CrieXD1337/AdvancedAuthSystem.git`
 3. Run command `cd AdvancedAuthSystem`
 4. Run `mvn package`
-5. Finnaly - get your JAR from `~/AdvancedAuthSystem/target` directory
+5. Finally - get your JAR from `~/AdvancedAuthSystem/target` directory
 
 #### Features (currently)
 - UI Forms
