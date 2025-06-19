@@ -6,9 +6,9 @@ login:
   title: "Login"
   label: "Your account registered\n\nEnter your password:"
   input: "Your password here"
-wrong-password:
+forgot-password:
   title: "Wrong Password"
-  label: "The password you entered is incorrect!"
+  label: "§lc§c| §rThe password you entered is incorrect!\n§l§c| §r§fTry again or leave from server"
   button-try-again: "Try Again"
   button-leave: "Leave"
 change-password:
