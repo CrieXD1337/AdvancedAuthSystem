@@ -1,14 +1,16 @@
 # AdvancedAuthSystem
-The plugin is being tested, there may be many errors/bugs. Request: if you notice any bugs, please write about them on [the issues page](https://github.com/CrieXD1337/AdvancedAuthSystem/issues).
+The plugin is **BEING TESTED**, there may be many errors/bugs. 
+
+Request: if you notice any bugs, please write about them on [the issues page](https://github.com/CrieXD1337/AdvancedAuthSystem/issues).
 
 ## How to compile a plugin?
 1. Open terminal
-2. Run command `git clone https://github.com/CrieXD1337/AdvancedAuthSystem.git`
-3. Run command `cd AdvancedAuthSystem`
-4. Run `mvn package`
-5. Finally - get your JAR from `~/AdvancedAuthSystem/target` directory
+2. Enter command `git clone https://github.com/CrieXD1337/AdvancedAuthSystem`
+3. Then enter command `cd AdvancedAuthSystem`
+4. Run `mvn clean package`
+5. Done! Get your JAR from `~/target`
 
-#### Features (currently)
+## Features (currently)
 - UI Forms
 - Password changes
 - database support
