@@ -23,7 +23,7 @@ auth.commands.changepassword
 
 ### Screenshots
 *Register form*
-![image](https://github.com/user-attachments/assets/d0d63d19-1948-4eda-af64-cd90bc5c7ab8)
+![image](https://github.com/user-attachments/assets/6e249599-90cf-4d69-a454-7021d484cc4e)
 
 *Login form*
 ![image](https://github.com/user-attachments/assets/64676a49-16d6-4735-b6eb-a415007b7e57)
