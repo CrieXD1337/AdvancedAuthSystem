@@ -70,7 +70,7 @@ public class FormListener implements Listener {
             authManager.handlePasswordInput(player, input);
         } else {
             player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("password-empty")));
-            player.sendActionBar(TextFormat.colorize(configManager.getMessages().getString("password-empty")));
+            player.sendTip(TextFormat.colorize(configManager.getMessages().getString("password-empty")));
             plugin.getFormManager().showLoginForm(player);
         }
     }
@@ -78,9 +78,9 @@ public class FormListener implements Listener {
     private void handleForgotPasswordForm(Player player, FormWindow window) {
         FormResponseSimple response = (FormResponseSimple) window.getResponse();
         String buttonText = response.getClickedButton().getText();
-        if (buttonText.equals(configManager.getForms().getString("forgot-password.button-try-again", "Try again"))) {
+        if (buttonText.equals(configManager.getForms().getString("forgot-password.button-try-again"))) {
             plugin.getFormManager().showLoginForm(player);
-        } else if (buttonText.equals(configManager.getForms().getString("forgot-password.button-leave", "Leave from server"))) {
+        } else if (buttonText.equals(configManager.getForms().getString("forgot-password.button-leave"))) {
             player.kick(configManager.getMessages().getString("kick-reason"), false);
         }
     }
@@ -89,8 +89,16 @@ public class FormListener implements Listener {
         String nick = player.getName().toLowerCase();
         FormResponseCustom response = (FormResponseCustom) window.getResponse();
         String pass = response.getInputResponse(1);
+        String repeatPass = response.getInputResponse(2);
 
         if (!dataProvider.isRegistered(nick)) {
+            if (pass == null || repeatPass == null || !pass.equals(repeatPass)) {
+                player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("passwords-not-match")));
+                player.sendTip(TextFormat.colorize(configManager.getMessages().getString("passwords-not-match")));
+                plugin.getFormManager().showRegisterForm(player);
+                return;
+            }
+
             int min = configManager.getConfig().getInt("min_count_symbols");
             int max = configManager.getConfig().getInt("max_count_symbols");
 
@@ -116,7 +124,7 @@ public class FormListener implements Listener {
             }
 
             if (configManager.getAccounts().getInt(player.getClientId().toString()) < configManager.getConfig().getInt("isCountAccounts")) {
-                // Check IP account limit
+                // Accounts limit by IP
                 if (configManager.getConfig().getBoolean("enable-max-accounts-per-ip")) {
                     int maxAccountsPerIp = configManager.getConfig().getInt("max-accounts-per-ip");
                     int accountsByIp = dataProvider.getAccountsByIp(player.getAddress());
@@ -142,7 +150,7 @@ public class FormListener implements Listener {
                 player.sendMessage(TextFormat.colorize(configManager.getMessages().getString("create_many_accounts")));
             }
         } else {
-            player.sendMessage(TextFormat.RED + "Error! Please login!");
+            player.sendMessage("Please login");
             plugin.getFormManager().showLoginForm(player);
         }
     }
