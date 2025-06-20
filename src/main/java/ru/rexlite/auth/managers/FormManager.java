@@ -26,6 +26,7 @@ public class FormManager {
         FormWindowCustom form = new FormWindowCustom(configManager.getForms().getString("register.title"));
         form.addElement(new ElementLabel(configManager.getForms().getString("register.label")));
         form.addElement(new ElementInput("", configManager.getForms().getString("register.input")));
+        form.addElement(new ElementInput("", configManager.getForms().getString("register.input-repeat")));
         player.showFormWindow(form, 1011);
     }
 
@@ -34,8 +35,8 @@ public class FormManager {
                 configManager.getForms().getString("forgot-password.title"),
                 configManager.getForms().getString("forgot-password.label")
         );
-        form.addButton(new ElementButton(configManager.getForms().getString("forgot-password.button-try-again")));
-        form.addButton(new ElementButton(configManager.getForms().getString("forgot-password.button-leave")));
+        form.addButton(new ElementButton(configManager.getForms().getString("forgot-password.button-try-again", "Try again")));
+        form.addButton(new ElementButton(configManager.getForms().getString("forgot-password.button-leave", "Leave from server")));
         player.showFormWindow(form, 1010);
     }
 
