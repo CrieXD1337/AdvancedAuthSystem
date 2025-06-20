@@ -2,13 +2,14 @@ register:
   title: "Register"
   label: "Enter your password"
   input: "Your password here"
+  input-repeat: "Repeat your password"
 login:
   title: "Login"
   label: "Your account registered\n\nEnter your password:"
   input: "Your password here"
 forgot-password:
   title: "Wrong Password"
-  label: "§lc§c| §rThe password you entered is incorrect!\n§l§c| §r§fTry again or leave from server"
+  label: "§lc§c| §rThe password you entered is wrong!\n§l§c| §r§fTry again or leave from server"
   button-try-again: "Try Again"
   button-leave: "Leave"
 change-password:
