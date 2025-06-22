@@ -21,7 +21,10 @@ Request: if you notice any bugs, please write about them on [the issues page](ht
 /changepassword - open changepassword UI
 
 ### Permissions
-auth.commands.changepassword
+- **auth**
+  - **auth.commands**
+    - **auth.commands.changepassword** *- /changepassword command*
+  - **auth.admin** *- /auth command*
 
 ### Screenshots
 *Register form*
